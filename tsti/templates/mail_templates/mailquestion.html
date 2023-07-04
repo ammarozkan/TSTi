@@ -1,0 +1,18 @@
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <br>
+    <h2>{{p["head"]}}</h2>
+    {% if p["type"] == "equation" %}
+        <p>{{p["explanation"]|safe}}</p>
+        <h4>{{p["question"]|safe}}</h4>
+    {% elif p["type"] == "inference" %}
+        {{p["explanation"]|safe}}
+    {% elif p["type"] == "geometric" %}
+        <p>{{p["explanation"]|safe}}</p>
+        <h4>{{p["question"]|safe}}</h4>
+    {% elif p["type"] == "wwtbam" %}
+        {{p["question"]|safe}}
+    {% endif %}
+    <br>
+    <br>
+    <br>

@@ -1,0 +1,9 @@
+{% extends 'management/base.html' %}
+
+{% block header %}
+    <h1>{% block title %}Yönetim{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+<h4>Yönetim Kısmına Hoş Geldin, {{g.manager["username"]}}</h4>
+{% endblock %}

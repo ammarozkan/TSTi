@@ -1,0 +1,55 @@
+{% extends 'management/base.html' %}
+
+{% block header %}
+    <h1>{% block title %}Kullanıcı{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+    {% if path_exists("/static/userlogos/"+user['id']|string+".png") %}
+    <img style="height:5%;width:5%" src="{{url_for('static',filename=user['pp_file_name'])}}" alt="Logo">
+    {% else %}
+        <img style="height:5%;width:5%" alt="Logo">
+    {% endif %}
+
+    <table class="users">
+        <tr>
+            {% for elName,element in user.items() %}
+            <th>{{elName}}</th>
+            {% endfor %}
+        </tr>
+        <tr>
+            {% for element in user %}
+                <td> {{user[element]}} </td>
+            {% endfor %}
+        </tr>
+    </table>
+
+    {% if user['ban']%2 == 0 %}
+    <h1><a href="{{url_for('RDH.unbanuser',id=user['id'],by=2)}}">Mesaj Yasağını Kaldır</a></h1>
+    {% else %}
+    <h1><a href="{{url_for('RDH.banuser',id=user['id'],by=2)}}">Mesaj Yasağı</a></h1>
+    {% endif %}
+
+    {% if user['ban']%4 == 0 %}
+    <h1><a href="{{url_for('RDH.unbanuser',id=user['id'],by=4)}}">Mesaj Görme Yasağını Kaldır</a></h1>
+    {% else %}
+    <h1><a href="{{url_for('RDH.banuser',id=user['id'],by=4)}}">Mesaj Görme Yasağı</a></h1>
+    {% endif %}
+
+    {% if user['ban']%3 == 0 %}
+    <h1><a href="{{url_for('RDH.unbanuser',id=user['id'],by=3)}}">Puan Yasağını Kaldır</a></h1>
+    {% else %}
+    <h1><a href="{{url_for('RDH.banuser',id=user['id'],by=3)}}">Puan Yasağı</a></h1>
+    {% endif %}
+
+    {% if user['ban']%5 == 0 %}
+    <h1><a href="{{url_for('RDH.unbanuser',id=user['id'],by=5)}}">Uzaklaştırmayı Kaldır</a></h1>
+    {% else %}
+    <h1><a href="{{url_for('RDH.banuser',id=user['id'],by=5)}}">Uzaklaştır</a></h1>
+    {% endif %}
+    
+    <h1><a href="#">Şifresini '0000' yap</a></h1>
+    <h1><a href="{{url_for('RDH.banuser_point0',id=user['id'])}}">Puanı Sıfırla</a></h1>
+    <h1><a href="{{url_for('RDH.send_warning',type='user',id=user['id'])}}">Uyar</a></h1>
+
+{% endblock %}

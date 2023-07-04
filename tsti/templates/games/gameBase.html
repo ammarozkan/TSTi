@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block header %}
+    <h1>{% block title %}BULMACA!!!{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+<table class="pPage">
+    <tr>
+        <td class="pPagetd">{% block question %}{% endblock %}</td>
+        <td class="pPagetd">{% block answer %}{% endblock %}</td>
+    </tr>
+</table>
+{% block extras %}{% endblock %}
+{% endblock %}

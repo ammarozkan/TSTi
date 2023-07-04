@@ -1,0 +1,15 @@
+{% extends base_from %}
+
+{% block header %}
+    <h1>{% block title %}{{header}}{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+    <form method="post" {{formExtras if formExtras != None else ""}}>
+        {% for element in elements %}
+            <label for="{{element[1]}}">{{element[2]}}</label>
+            <input type="{{element[0]}}" name="{{element[1]}}" id="{{element[1]}}" value = '{{element[3]}}' {{'required' if element[4] == 1}}>
+        {% endfor %}
+        <input type="submit" value="YAPIŞTIR!!">
+    </form>
+{% endblock %}

@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block header %}
+    <h1>{% block title %}{{header}}{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+
+{% if g.user["editorer"] % 2 == 0 %}
+<h2>Eşitlikler, eşitlikler!</h2>
+{% endif %}
+
+{% if g.user["editorer"] % 3 == 0 %}
+<h2>Çıkarım Soruları.</h2>
+{% endif %}
+
+{% if g.user["editorer"] % 5 == 0 %}
+<h2>Geometrik Sorular</h2>
+{% endif %}
+
+{% if g.user["editorer"] % 7 == 0 %}
+<h2>Kim Milyoner Olmak İster?!</h2>
+{% endif %}
+
+
+{% if g.user["editorer"] % 2 or g.user["editorer"] % 3 or g.user["editorer"] % 5 or g.user["editorer"] % 7 %}
+<h3><i>Yazarlığa</i> Başvur</h3>
+<form method="post" action="{{url_for('questioneditor.permission_request',id=7)}}">
+    <label for="types">Ne için Başvuruyorsun?</label>
+    <select id="types" name="types">
+        {% if g.user["editorer"] % 2 %}
+        <option value="wwtbam">Eşitlik, Hikayeleştirilmiş Denklem Soruları</option>
+        {% endif %}
+        {% if g.user["editorer"] % 3 %}
+        <option value="wwtbam">Çıkarım Soruları</option>
+        {% endif %}
+        {% if g.user["editorer"] % 5 %}
+        <option value="wwtbam">Geometrik Sorular</option>
+        {% endif %}
+        {% if g.user["editorer"] % 7 %}
+        <option value="wwtbam">Kim Milyoner Olmak İster Soruları</option>
+        {% endif %}
+    </select>
+
+    <label for="purpose">Başvuruyla Alakalı Biraz Bilgi (Ne kadar tecrüben var, neden burada soru yazmayı tercih ettin? Biraz da kendini açıklayabilirsin.)</label>
+    <input type="textbox" name="purpose" id="purpose" value = '' required>
+    <input type="submit" value="YAPIŞTIR!!">
+</form>
+<h4><i>Başvurunun kabulu için gerekli soru cevap, siteye kaydolurken girdiğin e-posta üzerinden yapılacaktır.</i></h4>
+{% endif %}
+
+{% endblock %}

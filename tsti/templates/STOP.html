@@ -1,0 +1,6 @@
+<h1>DUR BAKALIM UFAKLIK, NE YAPIYOSUN ULAN?</h1>
+<h4>BURAYA GELME SEBEBİN, BUYUR.</h4>
+
+{% for message in get_flashed_messages() %}
+    <h1>{{ message }}</h1>
+{% endfor %}

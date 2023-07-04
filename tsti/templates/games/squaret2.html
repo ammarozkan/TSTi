@@ -1,0 +1,50 @@
+{% extends 'games/gameBase.html' %}
+
+{% block question %}
+    {% for puzzle_array in dailypuzzledict["infos"] %}
+        <div class="puzzle">
+            <table class="puzzletable">
+                {% for puzY in range(0,puzzle_array|length) %}
+                    <tr>
+                        {% for puzX in range(0,puzzle_array[puzY]|length) %}
+                            <td> {{ puzzle_array[puzY][puzX] }} </td>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    {% endfor %}
+
+    <div class="puzzle">
+        <table class="puzzletable">
+            {% for puzY in range(0,dailypuzzledict["puzzle"]|length) %}
+                <tr>
+                    {% for puzX in range(0,dailypuzzledict["puzzle"][puzY]|length) %}
+                        <td>{{dailypuzzledict["puzzle"][puzY][puzX] if [puzX,puzY] not in dailypuzzledict["question"] else letters[dailypuzzledict["question"].index([puzX,puzY])] }}</td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+{% endblock %}
+
+{% block answer %}
+    <form class="puzzleform" method="post">
+        {% for i in range(0,dailypuzzledict["question"]|length) %}
+        <div>
+            <label for="answer[]"> {{ letters[i] }} </label>
+            <input name="answer[]" id="answer[]" type="number"/>
+        </div>
+        {% endfor %}
+        <input style="width: 50%;" type="submit" value="YAPIŞTIR!!">
+    </form>
+{% endblock %}
+
+{% block extras %}
+    <h4>Deneyenler ve Çözenler:</h4>
+    {% for s in dailypuzzledict["solver"] %}
+        <li>
+            <a class="username" href="{{url_for('user.userInfo',id=s[0][1])}}">{{ s[0][0] }}</a> {{ w[range(0,w|length)|random] if s[1] else l[range(0,l|length)|random] }}
+        </li>
+    {% endfor %}
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends 'management/base.html' %}
+
+{% block header %}
+    <h1>{% block title %}Raporlar{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+    {% for report in reports %}
+        <div class="report">
+            <p>{{report['report_id']}}</p>
+            <hr>
+            <h4>
+                <a href="{{url_for('RDH.an_user',id=report['author_id'])}}">[id:{{ users[report["author_id"]-1]["id"] }}] {{users[report["author_id"]-1]["username"]}}</a>
+                {% if report["report_type"] == 0 %}
+                {{report['i_id']}} id mesajı
+                {% endif %}
+                raporladı.
+            </h4>
+
+            <h4>SEBEP:</h4>
+            <p>{{report["infoFR"]}}</p>
+
+            
+            {% if report["report_type"] == 0 %}
+                <h4>MESAJ:</h4>
+                <a href="{{url_for('RDH.an_user',id=messages[report['i_id']]['author_id'])}}">
+                    <h4>[id:{{ messages[report["i_id"]]["author_id"] }}] {{ users[messages[report["i_id"]]["author_id"]-1]["username"] }} tarafından</h4>
+                </a>
+                <p>{{ messages[report["i_id"]]["body"] }}</p>
+            {% elif report["report_type"] == 1 %}
+                <h4>RAPORLANAN KRALIYET:</h4>
+                <h1 style="color:{{kingdoms[report['i_id']-1]['color_hex']}};">
+                    {{kingdoms[report['i_id']-1]["kingdomname"]}}
+                    [{{kingdoms[report['i_id']-1]["kingdom_level"]}}]
+                </h1>
+                <p>{{kingdoms[report['i_id']-1]["kingdom_exp"]}}</p>
+            {% elif report["report_type"] == 2 %}
+                <h4> RAPORLANAN KULLANICI: <a href="{{ url_for('RDH.an_user',id=report['i_id']) }}"> [id:{{report["i_id"]}}] {{ users[report["i_id"]-1]["username"] }} </a> </h4>
+            {% endif %}
+
+            <h4>EYLEM:</h4>
+            {% if report["report_type"] == 0 %}
+                <p><a href="{{url_for('RDH.remove_post',report_id = report['report_id'],id=report['i_id'])}}">Mesajı Sil</a></p>
+                <p><a href="{{url_for('RDH.send_warning',type='user',id=messages[report['i_id']]['author_id'], report_id = report['report_id'])}}">Mesaj Sahibine Uyarı</a></p>
+            {% elif report["report_type"] == 1 %}
+                <p><a href="{{url_for('RDH.send_warning',type='kingdom',id=report['i_id'], report_id = report['report_id'])}}">Uyarı Ver</a></p>
+                <p><a href="{{url_for('RDH.edit_kingdom',report_id = report['report_id'],id=report['i_id'])}}">Kraliyeti Düzenle</a></p>
+                <p><a href="#">Kraliyeti Kapat</a></p>
+            {% elif report["report_type"] == 2 %}
+                <p><a href="{{ url_for('RDH.an_user',id=report['i_id']) }}">Raporlanan Kullanıcıya Git</a></p>
+                <p><a href="{{url_for('RDH.send_warning',type='user',id=report['i_id'], report_id = report['report_id'])}}">Uyarı</a></p>
+            {% endif %}
+            <p><a href="{{url_for('RDH.deny_report',id=report['report_id'])}}">Raporu Reddet</a></p>
+            
+        </div>
+    {% endfor %}
+{% endblock %}

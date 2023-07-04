@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block header %}
+    <h1>{% block title %}Eleman{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+    <h1>
+        {% if user_info['profile_explanation'] != none and user_info['profile_explanation'] != '' %}
+            <img style="height:5%;width:5%" src="{{url_for('static',filename=user_info['pp_file_name'])}}" alt="Logo">
+        {% endif %}
+        
+        {% if kingdom_info != none %}<i style="color:{{kingdom_info['color_hex']}}">{{kingdom_info["kingdomname"]}}</i>'nden{% endif %}
+        {{user_info["username"]}}[ {{ user_info["point"] }} ]
+    </h1>
+
+    <p>{{user_info['profile_explanation']}}</p>
+
+    <hr><br><br>
+    <p><a href="{{ url_for('RDH.report',repType='user',id=user_info['id']) }}">Bu kullanıcıyı raporla.</a></p>
+
+
+    <hr><br><br>
+    <h1>Bu Sitedeki Mesajları:</h1>
+
+    {{messages_html|safe}}
+    
+{% endblock %}

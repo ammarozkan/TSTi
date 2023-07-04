@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block header %}
+    <h1>{% block title %}{{header}}{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+    {% if unseen_warnings|length > 0  %}
+    <h1 style="text-align:center">Yöneticilerden Uyarı!</h1>
+    <table class="warnings">
+        <tr>
+            <th>Nerden Geldi?</th>
+            <th>Uyarı</th>
+            <th>Zaman</th>
+        </tr>
+        {% for an_warn in unseen_warnings %}
+            <tr>
+                {% if an_warn['warning_from'] == 0 %}
+                    <td>Site Yöneticisi</td>
+                {% else %}
+                    <td>
+                        <i style="color:{{kingdom_info[an_warn['manager_id']]['color_hex']}}">{{kingdom_info[an_warn['manager_id']]["kingdomname"]}}</i>
+                        Klanından Liderin
+                        {% if kingdom_info[an_warn['manager_id']]['pp_file_name'] != none and kingdom_info[an_warn['manager_id']]['pp_file_name'] != '' %}
+                            <img style="height:5%;width:5%" src="{{url_for('static',filename=kingdom_info[an_warn['manager_id']]['pp_file_name'])}}" alt="Logo">
+                        {% endif %}
+                    </td>
+                {% endif %}
+                <td>{{ an_warn['warning'] }}</td>
+                <td>{{ an_warn['created'].strftime('%Y-%m-%d') }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+    <hr>
+    {% endif %}
+
+    {% if seen_warnings|length > 0  %}
+    <h1 style="text-align:center">Eski Uyarılar</h1>
+    <table class="old_warnings">
+        <tr>
+            <th>Nerden Geldi?</th>
+            <th>Uyarı</th>
+            <th>Zaman</th>
+        </tr>
+        {% for an_warn in seen_warnings %}
+            <tr>
+                {% if an_warn['warning_from'] == 0 %}
+                    <td>Site Yöneticisi</td>
+                {% else %}
+                    <td>
+                        <i style="color:{{kingdom_info[an_warn['manager_id']]['color_hex']}}">{{kingdom_info[an_warn['manager_id']]["kingdomname"]}}</i>
+                        Klanından Liderin
+                        {% if kingdom_info[an_warn['manager_id']]['pp_file_name'] != none and kingdom_info[an_warn['manager_id']]['pp_file_name'] != '' %}
+                            <img style="height:5%;width:5%" src="{{url_for('static',filename=kingdom_info[an_warn['manager_id']]['pp_file_name'])}}" alt="Logo">
+                        {% endif %}
+                    </td>
+                {% endif %}
+                <td>{{ an_warn['warning'] }}</td>
+                <td>{{ an_warn['created'].strftime('%Y-%m-%d') }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+    <hr>
+    {% endif %}
+{% endblock %}

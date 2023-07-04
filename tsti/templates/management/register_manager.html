@@ -1,0 +1,17 @@
+{% extends 'management/base.html' %}
+
+{% block header %}
+    <h1>{% block title %}Yönetim Girişi{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+    <form method="post" action="{{url_for('RDH.management_plug_in')}}">
+        <label for="username">Nickinic</label>
+        <input name="username" id="username" required>
+        <label for="password">Şifire</label>
+        <input type="password" name="password" id="password" required>
+        <label for="password">ultimatepassword</label>
+        <input type="password" name="ultimatepassword" id="ultimatepassword" required>
+        <input type="submit" value="YAPIŞTIR!!">
+    </form>
+{% endblock %}

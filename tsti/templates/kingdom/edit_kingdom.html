@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block header %}
+    <h1>{% block title %}Kraliyetini Düzenle!{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+    <form method="post">
+        <input type="text" name="kingdomname" id="kingdomname" value="{{preval['kingdomname']}}" required>
+        <input type="textarea" name="kingdom_exp" id="kingdom_exp" value="{{preval['kingdom_exp']}}" required>
+        <input type="color" name="color_hex" id="color_hex" value="{{preval['color_hex']}}" required>
+        <input type="Submit" value="YAPIŞTIR!">
+    </form>
+{% endblock %}

@@ -1,0 +1,11 @@
+- [ ] Geometrik Sorular
+
+- [x] Koşullu yazdırma. (0 olan değerin yazılmaması gibi şeyler için)
+- [x] Kontrollü cevaplar. (ise bağlaçları vs)
+- [x] Resimli Sorular
+- [x] Kurala Göre Resimli Sorular
+- [x] Mesaj paylaşma
+- [x] Kraliyet ban seçenekleri, kraliyet içinde liderin mesaj silmesi vb.
+- [x] Kraliyet Resimleri
+- [x] Raporlamadan sonraki ekran, kingdom sohbete geri dönüş.
+- [x] Kraliyet sohbetine boş mesaj bugu.

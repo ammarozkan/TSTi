@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block header %}
+    <h1>{% block title %}Eleman{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+    <table class="kingdomusers">
+        <tr>
+            <th>Sıra</th>
+            <th>Kişi</th>
+            <th>Puan</th>
+        </tr>
+    {% for user in users %} <!-- Must be ordered. -->
+        <tr>
+            <td>{{loop.index}}</td>
+            <td>
+                <img style="height:2%;width:2%" src="{{url_for('static',filename=user['pp_file_name'])}}" alt="Logo">
+                {% if user['kingdom_id']!=0 %}
+                    <i style="color:{{kingdoms[user['kingdom_id']-1]['color_hex']}}">{{kingdoms[user['kingdom_id']-1]['kingdomname']}}</i>'den
+                {% endif %}
+                <a href="{{ url_for('user.userInfo',id=user['id']) }}">{{ user['username'] }}</a>
+            </td>
+            <td>{{user['point']}}</td>
+        </tr>
+    {% endfor %}
+    </table>
+{% endblock %}

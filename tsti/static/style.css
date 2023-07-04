@@ -1,0 +1,155 @@
+html { font-family: sans-serif; background: rgb(255, 251, 236); padding: 1rem; }
+body { max-width: 85%; margin: 0 auto; background: bisque; }
+h1, h2, h3, h4, h5 { font-family: serif; color: #377ba8; margin: 1rem 0; }
+label { font-family: serif; color: #29a2ff; margin: 1rem 0;  }
+a { color: #377ba8; }
+hr { border: none; border-top: 1px solid lightgray; }
+.ba { background: rgb(184, 248, 147); display: flex; align-items: center; padding: 0 0.5rem; }
+.ba h1 { flex: content; margin: 0; }
+.ba .pages { flex: 75%; margin: 0; background-color: rgb(177, 243, 138); }
+.ba .pages a { background-color:rgb(184, 248, 147); text-decoration: none;  transition-duration: 0.4s;} 
+.ba .pages a:hover { background-color: beige; }
+.ba h1 a { text-decoration: none; padding: 0.25rem 0.5rem; }
+.ba ul  { display: flex; list-style:none; margin: 0; padding: 0; }
+.ba ul li a, .ba ul li span, header .action { display: block; padding: 0.5rem; }
+.content { padding: 0 1rem 1rem; }
+.content > header { border-bottom: 1px solid lightgray; display: flex; align-items: flex-end; }
+.content > header h1 { flex: auto; margin: 1rem 0 0.25rem 0; }
+.flash { margin: 1em 0; padding: 1em; background: #9bacfa; border: 1px solid #5c78f5; }
+
+.post > header { display: flex; align-items: flex-end; font-size: 0.85em; }
+.post > header > div:first-of-type { flex: auto; }
+.post > header h1 { font-size: 1.5em; margin-bottom: 0; }
+.post .about { color: slategray; font-style: italic; }
+.post .body { white-space: pre-line; }
+
+.answer { padding-left: 5%; background-color: rgb(175, 158, 138);}
+.answer > header { display: flex; align-items: flex-end; font-size: 0.85em; }
+.answer > header > div:first-of-type { flex: auto; }
+.answer > header h1 { font-size: 1em; margin-bottom: 0; }
+.answer  p { font-size:0.90em; }
+.answer .about { color: slategray; font-style: italic; }
+.answer .body { white-space: pre-line; }
+
+.content:last-child { margin-bottom: 0; }
+.content form { margin: 1em 0; display: flex; flex-direction: column; }
+.content label { font-weight: bold; margin-bottom: 0.5em; }
+.content input, .content textarea { margin-bottom: 1em; }
+.content textarea { min-height: 12em; resize: vertical; }
+input.danger { color: #cc2f2e; }
+/*input[type=submit] { align-self: start; min-width: 10em; }*/
+.message { background: beige; display: flex; align-items: center; }
+.message input[type=textarea] { flex: auto; width: 50%; }
+.message input[type=submit] { flex: content; }
+.message p {flex: content;}
+
+.answer_message { background: rgb(131, 119, 106); display: flex; align-items: center; }
+.answer_message input[type=textarea] { flex: auto; width: 50%; }
+.answer_message input[type=submit] { flex: content; }
+.answer_message p {flex: content;}
+
+.zigotvarlibassentence { padding:2%; margin: 2%; background-color: gray;}
+.zigotvarlibasliked { padding:2%; margin: 2%; background-color: orange;}
+
+/* Squaret2 */
+.puzzle { 
+    position: relative;
+    margin: 0.5em; 
+    background-color: rgb(130, 255, 218); 
+    width: fit-content; 
+    height:fit-content; 
+    padding: 1rem;
+}
+
+.puzzletable
+{
+    background-color:beige;
+    border: 1px dotted black;
+}
+
+.puzzletable tr, .puzzletable td
+{
+    text-align: center;
+    background-color: #a9ffcd;
+    width: 1.75em;
+    height: 1.75em;
+}
+
+.puzzleform div
+{
+    background-color: aliceblue;
+    width: fit-content;
+    height: fit-content;
+    margin-top: 10px;
+}
+
+.pPage
+{
+    margin: auto;
+    position: relative;
+    width: fit-content; 
+    height:fit-content;
+}
+
+
+.pPage .pPagetd
+{
+    border: 8px groove rgb(180, 214, 204);
+    padding: 25px;
+}
+
+.username { color:#1c5f8b; }
+
+.kingdomusers {text-align:center;border: 1px ridge rgb(179, 179, 158); background-color: rgb(185, 185, 166); margin-left: auto; margin-right: auto;}
+.kingdomusers tr, .kingdomusers td {border: 1px ridge rgb(179, 179, 158);}
+.kingdomusers th {border: 2px ridge rgb(179, 179, 158); background-color: rgb(134, 134, 108);}
+
+.warnings {text-align:center;border: 1px ridge rgb(179, 179, 158); background-color: rgb(192, 152, 128); margin-left: auto; margin-right: auto;}
+.warnings tr, .warnings td {border: 1px ridge rgb(184, 153, 130);}
+.warnings th {border: 2px ridge rgb(179, 179, 158); background-color: rgb(192, 98, 60);}
+
+.old_warnings {text-align:center;border: 1px ridge rgb(179, 179, 158); background-color: rgb(210, 219, 219); margin-left: auto; margin-right: auto;}
+.old_warnings tr, .old_warnings td {border: 1px ridge rgb(188, 201, 201);}
+.old_warnings th {border: 2px ridge rgb(179, 179, 158); background-color: rgb(137, 148, 155);}
+
+.kingdom_request { text-align: center; margin: 0 auto; background-color: rgb(86, 228, 105); padding: 1rem; text-decoration: none; transition-duration: 0.4s;}
+.kingdom_request:hover { background-color: rgb(106, 189, 117); }
+.kingdom_exit { text-align: center; margin: 0 auto; background-color: rgb(228, 86, 86); padding: 1rem; text-decoration: none;  transition-duration: 0.4s;}
+.kingdom_exit:hover { background-color: rgb(189, 106, 106); }
+
+.okey { text-align: center; margin: 0 auto; background-color: rgb(86, 228, 105); padding: 0.5rem; text-decoration: none;  transition-duration: 0.4s;}
+.okey:hover { background-color: rgb(68, 175, 82); margin: 10rem;}
+
+.nobttn { text-align: center; margin: 0 auto; background-color: rgb(228, 86, 86); padding: 0.25rem; text-decoration: none;  transition-duration: 0.4s;}
+.nobttn:hover { background-color: rgb(189, 106, 106); }
+
+
+@keyframes caution_anim
+{
+    0% {background-color: rgb(255, 0, 0);}
+    50% {background-color: rgb(145, 47, 47);}
+    100% {background-color: rgb(255, 0, 0);}
+}
+
+.caution { 
+    animation-name:caution_anim;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    text-align: center; margin: 0 auto; background-color: rgb(228, 86, 86); padding: 0.25rem; text-decoration: none;  transition-duration: 0.4s;
+}
+.caution:hover { background-color: rgb(189, 106, 106); }
+
+
+@keyframes example {
+    0% {background-color: rgba(0, 0, 0, 0);height: 0%;width: 0%;font-size: 0.0em;}
+    25% {background-color: rgb(0, 252, 55);height: 50%;width: 20%;font-size: 1em;}
+    50% {background-color: rgb(200, 255, 0);height: 100%;width: 30%;font-size: 2em;}
+    75% {background-color: rgb(255, 255, 0);height: 10%;width: 80%;font-size: 5em;}
+}
+
+.megadiv {
+    background-color: rgba(0, 0, 0, 0);height: 0%;width: 0%;font-size: 0%;
+    animation-name:example;
+    animation-duration: 6000s;
+    animation-iteration-count: infinite;
+}

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<title>{% block title %}{% endblock %}</title>
+
+<link rel="stylesheet" href="{{ url_for('static',filename='style.css') }}">
+<script>
+  const website_url = "http://127.0.0.1:5000/"
+  function copyThat(value)
+  {
+    navigator.clipboard.writeText(value);
+    alert("Kopyalandı:"+value)
+    console.log("Konsole niye bakıyon yevrım?, al kafana link:"+value);
+  }
+</script>
+
+<nav class="ba">
+    <h1><a href="{{url_for('index')}}">TSTi{{"s" if range(0,50) | random > 45 else ""}}</a></h1>
+    <ul class="pages">
+      <li><a href="{{ url_for('messages.index') }}">Mesajlar</a>
+      <li><a href="{{ url_for('puzzle.daily_puzzle') }}">Günlük Bulmaca</a></li>
+      <li><a href="{{ url_for('user.all_users') }}">Sıralama</a></li>
+      <li><a href="{{ url_for('question.question') }}">Sorular</a></li>
+      <li><a href="{{ url_for('kingdom.kingdom_main') }}">Kraliyetler</a></li>
+      {% if g.user and g.user["kingdom_id"] != 0 %}
+      <li><a href="{{ url_for('kingdom.user_kingdom') }}">Kraliyetin</a></li>
+      {% endif %}
+      <li><a href="{{ url_for('questioneditor.main_page') }}">Soru Editörü</a></li>
+    </ul>
+    <ul>
+      {% if unseen_warn_count > 0 %}
+      <li><a class="caution" href="{{ url_for('user.warnings') }}">Görülmemiş Uyarıların Var</a></li>
+      {% else %}
+      <li><a href="{{ url_for('user.warnings') }}">Uyarılar</a></li>
+      {% endif %}
+      {% if g.user %}
+      <li><a href="{{ url_for('user.customisation') }}">Profili Düzenle</a></li>
+        <li><span>{{ g.user['username'] }}</span></li>
+        <li><a href="{{ url_for('auth.logout') }}">Çıkış Yap</a></li>
+      {% else %}
+        <li><a href="{{ url_for('auth.register') }}">Kayıt Ol</a></li>
+        <li><a href="{{ url_for('auth.login') }}">Giriş Yap</a></li>
+      {% endif %}
+    </ul>
+</nav>
+
+<section class="content">
+    <header>
+      {% block header %}{% endblock %}
+    </header>
+    {% for message in get_flashed_messages() %}
+        <div class="flash">{{ message }}</div>
+    {% endfor %}
+    <div class="megadiv">UYAAAAAAAAAAAAAN</div>
+    {% block content %}{% endblock %}
+</section>
+
+{% if range(0,20)|random > 3 %}
+  <section class="zigotvarlibassentence">
+      <h1>Bir Zigot Varlıbaş sözü...</h1>
+      <p>
+        <i>"</i>
+        {% set val = range(0, (zvSentences|length) + (basesentences|length) )|random %}
+        {% if val < basesentences|length %}
+        {{ basesentences[val] }} <i>"</i>
+        {% elif val >= basesentences|length and val-(basesentences|length) < zvSentences|length %}
+        {{ zvSentences[val-(basesentences|length)]['body'] }} <i>"</i> <i>{{ zvSentences[val-(basesentences|length)]['created'].strftime('%Y-%m-%d') }} tarihli.</i>
+        {% endif %}
+      </p>
+      <p><i>Zigot ustanın sitede toplam {{ (zvSentences|length) + (basesentences|length) }} değerli sözü var.</i></p>
+  </section>
+{% else %}
+    <section class="zigotvarlibasliked">
+        <h1>Zigot ustanın beğendiği bir söz...</h1>
+        <p>
+          {% if zvLiked|length > 0 %}
+            {% set val = range(0, (zvLiked|length) )|random %}
+            {{zvLiked[val]["username"]}} tarafından söylendi. <i>"</i>{{ zvLiked[val]["body"] }}<i>"</i>
+            <i>{{ zvLiked[val]['created'].strftime('%Y-%m-%d') }} tarihli.</i>
+          {% endif %}
+        </p>
+        <p><i>Zigot ustanın sitede toplam {{ (zvLiked|length) }} beğendiği söz var.</i></p>
+    </section>
+{% endif %}
+
+
+
+
+
+<p style="text-align: center;"><i>info.thesitethatintellectual@gmail.com</i></p> <br>

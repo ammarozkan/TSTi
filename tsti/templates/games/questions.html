@@ -1,0 +1,62 @@
+{% extends 'games/gameBaseWOAnswer.html' %}
+
+{% block title %}{{p["head"]}}{% endblock %}
+{% block question %}
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <br>
+    {% if p["type"] == "equation" %}
+        <p>{{p["explanation"]|safe}}</p>
+        <h4>{{p["question"]|safe}}</h4>
+        <form method="POST" action="{{url_for('question.question_by_seed',questionId=questionId,seed=seed)}}">
+            <input id="equationanswer" name="equationanswer">
+            <input type="submit" value="YAPIŞTIIRRRRR!!!">
+        </form>
+    {% elif p["type"] == "inference" %}
+        {{p["explanation"]|safe}}
+        <form method="POST" action="{{url_for('question.question_by_seed',questionId=questionId,seed=seed)}}">
+            <h4>yargıları üstünde düşünülerek aşağıdaki;</h4>
+            <ul>
+                {% for tick in p["tickable"] %}
+                    <li><input type="checkbox" id="{{tick[0]}}" name="{{tick[0]}}" value="1">{{tick[2]}}</li>
+                    <br>
+                {% endfor %}
+            </ul>
+            <h4>yargılarından hangileri çıkartılabilir?</h4>
+            <input type="submit" value="YAPIŞTIIRRRRR!!!">
+        </form>
+    {% elif p["type"] == "geometric" %}
+        <p>{{p["explanation"]|safe}}</p>
+        <h4>{{p["question"]|safe}}</h4>
+        <form method="POST" action="{{url_for('question.question_by_seed',questionId=questionId,seed=seed)}}">
+            <input id="equationanswer" name="equationanswer">
+            <input type="submit" value="YAPIŞTIIRRRRR!!!">
+        </form>
+        <a href="{{url_for('question.geometric_data_like',questionId=questionId,seed=seed,geometric_data=p['geometric_data'],likeornot=True)}}">Soruyu Beğendim!</a>
+        <a href="{{url_for('question.geometric_data_like',questionId=questionId,seed=seed,geometric_data=p['geometric_data'],likeornot=False)}}">Leş gibi soru.</a>
+    {% elif p["type"] == "wwtbam" %}
+        {{p["question"]|safe}}
+        <form method="POST" action="{{url_for('question.question_by_seed',questionId=questionId,seed=seed)}}">
+            <ul>
+                {% for choice in p["choices"] %}
+                    <li><label><input type="radio" name="questionanswer" value="{{choice}}"> {{choice}} </label></li>
+                    <br>
+                {% endfor %}
+            </ul>
+            <input type="submit" value="YAPIŞTIIRRRRR!!!">
+
+        </form>
+    {% endif %}
+    <br>
+    <br>
+    <br>
+{% endblock %}
+
+{% block answer %}
+    <p>{{p["answer"]|safe}} olacaktı.</p>
+{% endblock %}
+
+{% block extras %}
+    <a href="{{url_for('question.question_by_seed',questionId=questionId,seed=seed)}}">Soruya Spesifik Olarak Git</a>
+    <a href="{{url_for('messages.sendQuestion',seed=seed,questionId=questionId)}}">Soruyu Mesaj Olarak Paylaş</a>
+{% endblock %}

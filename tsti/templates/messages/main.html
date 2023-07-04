@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block header %}
+    <h1>{% block title %}Genel Mesajlar{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+    {% if not do_not_show_send_messages %}
+    <form method="post" action="{{url_for('messages.send_message')}}">
+        <nav class="message">
+            <input type="textarea" id="body" name="body">
+            <input type="submit" value="Yapıştır!">
+        </nav>
+    </form>
+    {% endif %}
+    {{msgtext|safe}}
+{% endblock %}

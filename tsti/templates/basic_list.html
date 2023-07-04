@@ -1,0 +1,28 @@
+{% extends base_from %}
+
+{% block header %}
+    <h1>{% block title %}{{list_name}}{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+    {% if list_object|length > 0 %}
+    <table class="users">
+        <tr>
+            {% for elName,element in list_object[0].items() %}
+            <th>{{elName}}</th>
+            {% endfor %}
+        </tr>
+        {% for an_object in list_object %}
+            <tr>
+                {% for element in an_object %}
+                    {% if namefora == element %}
+                    <td><a href="{{ url_for(urlfora, name = an_object[element]) }}">{{an_object[element]}}</a></td>
+                    {% else %}
+                    <td> {{an_object[element]}} </td>
+                    {% endif %}
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+{% endblock %}

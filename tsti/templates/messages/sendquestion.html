@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block header %}
+    <h1>{% block title %}Soru Gönder{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    {% if p["type"] == "equation" %}
+        <p>{{p["explanation"]|safe}}</p>
+        <h4>{{p["question"]|safe}}</h4>
+    {% elif p["type"] == "inference" %}
+        {{p["explanation"]|safe}}
+        <h4>yargıları üstünde düşünülerek aşağıdaki;</h4>
+            <ul>
+                {% for tick in p["tickable"] %}
+                    <li><input type="checkbox" id="{{tick[0]}}" name="{{tick[0]}}" value="1">{{tick[2]}}</li>
+                    <br>
+                {% endfor %}
+            </ul>
+        <h4>yargılarından hangileri çıkartılabilir?</h4>
+    {% elif p["type"] == "geometric" %}
+        <p>{{p["explanation"]|safe}}</p>
+        <h4>{{p["question"]|safe}}</h4>
+    {% endif %}
+
+    <p>Sorusunu gönderiyorsun.</p>
+
+    <form method="post" action="{{url_for('messages.send_message',question_id=question_id, question_seed = question_seed)}}">
+        <nav class="message">
+            <input type="textarea" id="body" name="body">
+            <input type="submit" value="Yapıştır!">
+        </nav>
+    </form>
+{% endblock %}

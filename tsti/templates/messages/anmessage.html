@@ -1,0 +1,38 @@
+<article class="post" style="padding-left:{{padd}}%;">
+    {{head|safe if head}}
+    <header>
+        <div>
+            <h1>
+                <img style="height:5%;width:5%" src="{{url_for('static',filename=msg['pp_file_name'])}}" alt="Logo">
+                {% if msg['kingdom_id'] > 0 %}
+                    <i style="color:{{kingdoms[msg['kingdom_id']-1]['color_hex']}}">{{kingdoms[msg['kingdom_id']-1]['kingdomname']}}</i>'den
+                {% endif %}
+                <a href="{{ url_for('user.userInfo',id=msg['author_id']) }}">{{ msg['username'] }}</a> [{{msg['point']}}]
+            </h1>
+            <div class="about">{{ msg['created'].strftime('%Y-%m-%d') }} tarihli.</div>
+        </div>
+        <button onclick="copyThat( website_url+'{{ url_for('messages.specific_post',id=msg['id']) }}' )">Paylaşmak İçin Link</button>
+        <a class="action" href="{{ url_for('messages.like', id=msg['id'] ) }}">
+            {% if {'post_id':msg['id'],'author_id':g.user['id']} not in user_likes %}
+                Bunu Beğen
+            {% else %}
+                Beğeniyi Geri Al
+            {% endif %}
+        </a>
+        <a class="action" href="{{url_for('RDH.report',repType='messages',id=msg['id'])}}">Bunu Raporla</a>
+        {% if channel != 0 and g.user['kingdom_perm'] > 3 %}
+            <form method="post" action="{{ url_for('kingdom.remove_message_kingdom',id=msg['id']) }}"><input type="submit" value="MESAJI SİL!"></form>
+        {% endif %}
+    </header>
+    {% if msg['attachedQuestionID'] != -1 %}
+    <a href="{{url_for('question.question_by_seed',questionId = msg['attachedQuestionID'], seed = msg['attachedQuestionSeed'])}}">Paylaşılan Soruya Git</a>
+    {% endif %}
+    <p class="body">{{ msg['body'] }}</p>
+    <form method="post" action="{{ url_for('messages.send_message',answer_to=msg['id'],channel=channel)}}">
+        <nav class="message">
+            <p>{{ msg['likes'] }} beğeni!</p>
+            <input type="textarea" id="body" name="body">
+            <input type="submit" value="CEVAAAAAAAAPPPP!">
+        </nav>
+    </form>
+</article>

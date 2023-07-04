@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<title>{% block title %}{% endblock %}</title>
+
+<link rel="stylesheet" href="{{ url_for('static',filename='managementStyle.css') }}">
+
+<nav class="ba">
+    <h1><a href="{{url_for('RDH.index') if nosee != true else '#'}}">TSTi{{"s" if range(0,50) | random > 45 else ""}} Manager</a></h1>
+    {% if g.manager %}
+    <ul class="pages">
+            <li><a href="{{ url_for('RDH.reports') }}">Raporlar</a></li>
+            <li><a href="{{ url_for('RDH.old_reports') }}">Eski Raporlar</a></li>
+            <li><a href="{{ url_for('RDH.happeneds') }}">Olanlar</a></li>
+            <li><a href="{{ url_for('RDH.users') }}">Kullanıcılar</a></li>
+            <li><a href="{{ url_for('RDH.managers') }}">Yöneticiler</a></li>
+            <li><a href="{{ url_for('RDH.posts') }}">Mesajlar</a></li>
+    </ul>
+    <ul>
+        <form action="{{ url_for('RDH.database') }}">
+            <input type="text" name="name" id="name">
+            <input type="text" name="search" id="search">
+            <input type="text" name="equalto" id="equalto">
+            <input type="submit" value="Database'de Arat">
+        </form>
+        <li class = "pages"><a href="{{ url_for('RDH.database') }}">Database</a></li>
+            <li><a href="{{ url_for('RDH.logout') }}">Çıkış Yap</a>
+    </ul>
+    {% endif %}
+</nav>
+
+<section class="content">
+    <header>
+      {% block header %}{% endblock %}
+    </header>
+    {% for message in get_flashed_messages() %}
+        <div class="flash">{{ message }}</div>
+    {% endfor %}
+    {% block content %}{% endblock %}
+</section>

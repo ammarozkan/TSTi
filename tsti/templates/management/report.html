@@ -1,0 +1,15 @@
+{% extends 'management/base.html' %}
+
+{% block header %}
+    <h1>{% block title %}Rapor{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+    {% if not blank %}
+    <form method="post">
+        <label for="infoFR">Neden Raporluyorsun?</label>
+        <input name="infoFR" id="infoFR" required>
+        <input type="submit" value="Rapor Eyle">
+    </form>
+    {% endif %}
+{% endblock %}

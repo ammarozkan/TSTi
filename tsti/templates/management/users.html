@@ -1,0 +1,26 @@
+{% extends 'management/base.html' %}
+
+{% block header %}
+    <h1>{% block title %}Kullanıcılar{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+    {% if users|length > 0 %}
+    <table class="users">
+        <tr>
+            <th>Ayrıntı</th>
+            {% for elName,element in users[0].items() %}
+            <th>{{elName}}</th>
+            {% endfor %}
+        </tr>
+        {% for user in users %}
+            <tr>
+                <td><a href="{{url_for('RDH.an_user',id=user['id'])}}">Ayrıntı</a></td>
+                {% for element in user %}
+                    <td> {{user[element]}} </td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+{% endblock %}

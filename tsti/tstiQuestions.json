@@ -1,0 +1,357 @@
+{
+    "qs":
+    [
+        {
+            "point":50,
+            "type":"equation",
+            "head":"Mikey'in Mega Çokgeni",
+            "vars":{"n":{"range":[30,150]}},
+            "conditions":[],
+            "explanation":[
+                ["text","<p>Mikey: Hey dostum, benim bir "],
+                ["symbolic","n"],
+                ["text","genim var! Bil bakalım iç açılarından bir tanesi kaç derece?</p>\n"],
+                ["text","<p>Thomas: "],
+                ["symbolic","n"],
+                ["text","gen mi? Dostum kafayı mı üşüttün?! Ama sanırım cevabı biliyorum!</p>"]
+            ],
+            "question":[
+                ["text","Thomas'ın bu soruyu doğru cevaplaması için yanıt olarak ne vermesi gerekir?"],
+                ["text","<i>Bir bilgisayarın hesaplayabileceği son ondalık basamağa kadar yazınız. </i>"]
+            ],
+            "answer":{"val":" (n-2)*180/n ","type":"float"}
+        },
+        {
+            "point":50,
+            "type":"equation",
+            "head":"Matematikçi Balıkçı'nın Akıl Oyunları",
+            "vars":{"t":{"range":[0,2]},"ar":{"range":[1,2]},"u":{"range":[1,2]},"xs":{"range":[1,5]},"xss":{"range":[6,10]},"a":{"range":[1,5]},"b":{"range":[1,10]}},
+            "conditions":[],
+            "explanation":[
+                ["text","Bir gün bir balıkçı yola çıkıyor. Yolda neye rastladıysa onu kendi türettiği fonksiyonuna üs olarak ekliyor.\n "],
+                ["text","Fonksiyonuna bu üsleri ekledikten sonra, fonksiyonunun x değerini  "],
+                ["symbolic","xs"],
+                ["text","'e eşitliyor ve sonuç olarak "],
+                ["symbolic","(a*xs+b)**(t+ar+u)"],
+                ["text"," buluyor. \nArdından farklı bir şey denemek amacıyla x değerini "],
+                ["symbolic","xss"],
+                ["text","'e eşitliyor ve sonuç olarak "],
+                ["symbolic","(a*xss+b)**(t+ar+u)"],
+                ["text"," buluyor."]
+            ],
+            "question":[
+                ["text","<p>Bu balıkçı yolda;<ul><li>\n"],
+                ["symbolic","t"],
+                ["text"," tane tavuk,</li><li>\n"],
+                ["symbolic","ar"],
+                ["text"," tane araba,</li><li>\n"],
+                ["symbolic","u"],
+                ["text"," tane uçak</li></ul>\n"],
+                ["text","görerek fonksiyonuna üs olarak eklediyse, fonksiyonunun formülü ne olabilir?</p>"],
+                ["text","<i>a*x + b şeklinde belirtiniz.</i>"]
+            ],
+            "answer":{"val":"a*x+b","type":"nonint"}
+        },
+        {
+            "point":20,
+            "type":"equation",
+            "head":"Bilgin Yemekçi Ahmet Usta",
+            "vars":{"a":{"range":[15,20]},"dt":{"range":[5,10]},"d":{"range":[1,4]},"wd":{"range":[10,20]}},
+            "conditions":[],
+            "explanation":[
+                ["text","Çarşıbaşı Ahmet Usta, yemek ile alakalı bir kitap okumaya karar vermiştir. Bu kitabı günde "],
+                ["symbolic","a"],
+                ["text"," sayfa okuyarak "],
+                ["symbolic","dt"],
+                ["text"," günde bitirmek istemiştir. Ancak kitabı böyle okuyarak ancak "],
+                ["symbolic","d"],
+                ["text"," gün ilerleyebilmiştir."]
+            ],
+            "question":[
+                ["text","Çarşıbaşı Ahmet Usta'nın "],
+                ["symbolic","wd"],
+                ["text"," gün sonra kitabı iade etmesi gerekiyorsa, Usta günde en az kaç sayfa okumalıdır?"]
+            ],
+            "answer":{"val":"(a*dt-a*d)/wd","type":"lowestint"}
+        },
+        {
+            "point":20,
+            "type":"equation",
+            "head":"İş Adamı'nın Kaybolan Fonksiyonu",
+            "vars":{"a":{"range":[1,25]},"b":{"range":[1,25]},"c":{"range":[1,25]},"x1":{"range":[-5,5]},"x2":{"range":[6,10]}},
+            "conditions":[],
+            "explanation":[
+                ["text","Bak şimdi, benim grafiğimin eğimi, çok kıymetli eski matematikçilerimin hesabına göre, bir x değerinde "],
+                ["symbolic","2*a*x+b"],
+                ["text"," idi. Ve hatırladığım kadarıyla bu fonksiyonun kendisi, x="],
+                ["symbolic","x2"],
+                ["text"," noktasında "],
+                ["symbolic","a*x2**2+b*x2+c"],
+                ["text"," idi. Bu fonksiyon benim ve iş verenlerim için çok önemli. Bunu bulabilirsem çok yararıma dokunur."],
+                ["text"," Ali, bu sözleri söyleyen iş adamının sorununu çözen kişiye yüklü miktarda para vereceğine inanıyor. "]
+            ],
+            "question":[
+                ["text","<p>Ali bu parayı almak için iş adamına fonksiyonu söylemeliyse, iş adamına ne söylemelidir?</p>"],
+                ["text","<i>Cevabınızı a*x**2 + b*x + c şeklinde belirtiniz. </i>"]
+            ],
+            "answer":{"val":"a*x**2+b*x+c","type":"nonint"}
+        },
+        {
+            "point":30,
+            "type":"equation",
+            "head":"Mızraklı Harun Sorusu",
+            "vars":{"mizrakli1":{"range":[100,200]},"okcu1":{"range":[30,60]},"ordu2":{"range":[30,40]},"komutan1":{"range":[10,30]},"komutan2":{"range":[30,140]}},
+            "conditions":[["komutan2","ordu2",1]],
+            "explanation":
+            [
+                ["text","<p>"],
+                ["symbolic","okcu1+mizrakli1"],
+                ["text"," kişilik oklu ve mızraklılardan bir orduyu yönetmesi gereken Harun Komutan, orduya yetmeyeceğini anladığında artık yeni bir komutanı bekleyemezdi. Onun yerine "],
+                ["symbolic","komutan2"],
+                ["text"," kişilik bir orduyu yönetebilen abisi Marun Komutan'dan yardım istemeye karar verdi."],
+                ["symbolic","ordu2"],
+                ["text"," kişilik ordusu olan Marun Komutan, Harun'a yardım edebileceğini söyledi. Harun'un ordusundan alabileceği kadar askeri kendi ordusuna katacaktı. Ama aşağıdaki özelliklere sahip askerler arıyordu;</p>"],
+                ["text","<ul><li>Okçu kullanacak.</li>"],
+                ["text","<li>Mızraklı, okçu kalmadığı zamanlarda alınabilir.</li></ul>"],
+                ["text","<p>Harun ile Marun arasında şöyle bir diyalog geçer:</p> "],
+                ["text","<ul><li>Marun lütfen, "],
+                ["symbolic","((mizrakli1+okcu1)-(komutan2-ordu2))-komutan1"],
+                ["text","kişi daha al. Ordum dağılır yoksa... </li>"],
+                ["text","<li>Hayır Harun! Ben bu kadar yönetebilirim.</li></ul>"]
+            ],
+            "question":[
+                ["text","Bu bilgilere göre, Harun'un ordusunda kaç mızraklı kalmıştır?"]
+            ],
+            "answer":{"val":"mizrakli1+(okcu1-(komutan2-ordu2))","type":"nonint"}
+        },
+        {
+            "point":15,
+            "type":"inference",
+            "head":"Patatesçi Hüseyin Abi",
+            "premises":
+            [
+                [0,[[-1]],"Patates 10 gündür yeniyor.",2],
+                [1,[[0],[7],[2]],"Patates Yenir",0],
+                [2,[[0],[4,5],[5,7]],"1 haftadır patates yeniyor.",2],
+                [3,[[7]],"Ahmet amca patates satıyor.",0],
+                [4,[[0,3]],"Patatesler ahmet amcadan satıldı.",0],
+                [5,[[0,3,4],[6]],"Ahmet amca 1 haftadır patates satıyor.",2],
+                [6,[[0,3,4]],"Ahmet amca 10 gündür patates satıyor.",2],
+                [7,[[0,4]],"Yenilen patatesler, Ahmet amcanın sattıkları.",2]
+            ],
+            "question":[
+                ""
+            ]
+        },
+        {
+            "point":15,
+            "type":"inference",
+            "head":"İnatçı Top",
+            "premises":
+            [
+                [0,[[-1]],"Çıkmadı",2],
+                [1,[[-1],[2,3],[3,4]],"Her şeyin sebebi top idi.",2],
+                [2,[[0,1],[0,4]],"Top, çıkarmadı.",2],
+                [3,[[-1]],"Eğer top bir şeye izin vermezse, top herşeyin suçlusudur.",2],
+                [4,[[1,3],[2]],"Top bir şeye izin vermedi.",2]
+            ],
+            "question":[
+                ""
+            ]
+        },
+        {
+            "point":2,
+            "type":"equation",
+            "head":"Bir sürü toplar!!",
+            "vars":{"final_ball_count":{"range":[1,10]},"triangle_count":{"range":[3,7]},"putting_ball_count":{"range":[1,5]},"image_size":{"range":[4,6]}},
+            "conditions":[["final_ball_count","triangle_count",1],["triangle_count","putting_ball_count",1]],
+            "image_definitions":{"5":[0,[0.1,1.0,0.5]]},
+            "explanation":
+            [
+                ["text","<p>Aşağıdaki resmi inceleyiniz.</p>"],
+                ["image",["image_size","image_size",["r",[0,"final_ball_count-putting_ball_count"]],["r",[2,"triangle_count"]]]]
+            ],
+            "question":[
+                ["text","Üçgenlerden seçilen "],
+                ["symbolic","putting_ball_count"],
+                ["text" ," tanesinin yerine top koyulacağına göre ve kalan üçgenlerin 2 katı kadar daha top koyulacağına göre, kaç tane top vardır?"]
+            ],
+            "answer":{"val":"final_ball_count+(triangle_count-putting_ball_count)*2","type":"integer"}
+        },
+        {
+            "point":2,
+            "type":"equation",
+            "head":"Bir sürü şeması olan Farmican Abi.",
+            "vars":{"pink_scheme":{"range":[0,5]},"orange_scheme":{"range":[0,5]}},
+            "conditions":[],
+            "image_definitions":{"10":[2,[1.2,0.5,1.6]],"11":[2,[2.0,1.0,0.5]]},
+            "explanation":
+            [
+                ["text","<p>Aşağıdaki gibi, üçgen şekilli şemaları olan Farmican abi, şemalarını ayırmak istiyor.</p>"],
+                ["image",[5,5,["a",[3,0,1]],["r",[10,"pink_scheme"]],["r",[11,"orange_scheme"]]]],
+                ["text","<p><i>Farmican abi ve oldukça fazla olan şemalarının hepsi fotoğraf çekiliyorlar.</i></p>"]
+            ],
+            "question":[
+                ["text","Üçgenlerden kategorilere <i>en görünür</i> şekilde ayrıldıklarında, <i>en az</i> kaç kategori olmalıdır?"]
+            ],
+            "answer":{"val":" orange_scheme > 0 & pink_scheme > 0 => 2; orange_scheme + pink_scheme > 0 => 1; orange_scheme == 0 & pink_scheme == 0 => 0","type":"integer"}
+        },
+        {
+            "point":2,
+            "type":"equation",
+            "head":"Çaycı Barmonyum Fatıma",
+            "vars":{"onehoundred":{"range":[0,20]},"fifty":{"range":[0,20]},"twentyfive":{"range":[0,20]},"droponehoundred":{"range":[0,5]},"dropfifty":{"range":[0,5]},"droptwentyfive":{"range":[0,5]}},
+            "conditions":[["onehoundred","droponehoundred",1],["fifty","dropfifty",1],["onehoundred","droponehoundred",1]],
+            "image_definitions":{},
+            "explanation":
+            [
+                ["text","<p>Fatıma teyze çaylarının kaç para ettiğini hesaplamak için bir model oluşturuyor. Modelinde küreler 100, küpler 50, üçgenlerse 25 tl etmekte.</p>"],
+                ["text","<p>Fatıma teyze, çay parasını hesaplarken fiyatı bulunca buldum diye bağırıp heyecanlanıyor ve yanlışıkla,<ul><li>"],
+                ["symbolic","droponehoundred"],
+                ["text"," küre,</li><li>"],
+                ["symbolic","dropfifty"],
+                ["text"," küp,</li><li>"],
+                ["symbolic","droptwentyfive"],
+                ["text"," üçgen</li></ul> "],
+                ["text"," düşürüyor. Tam düşürdüğü sırada bir fotoğraf çekiliyor."],
+                ["image",[10,10,["r",[0,"onehoundred-droponehoundred"]],["r",[1,"fifty-dropfifty"]],["r",[2,"twentyfive-droptwentyfive"]]]],
+                ["text","<p><i>Düşmeyenlerin Masada Gözüktüğü Çekilen Fotoğraf</i></p>"]
+            ],
+            "question":[
+                ["text","Fatıma teyzenin çay parası kaçtı?"]
+            ],
+            "answer":{"val":"100*onehoundred + 50*fifty + 25*twentyfive","type":"integer"},
+            "explanation_conditions":
+            {
+                "1,2":"droponehoundred > 0",
+                "3,4":"dropfifty > 0",
+                "5,6":"droptwentyfive > 0"
+            }
+        },
+        {
+            "point":3,
+            "type":"geometric",
+            "head":"Leş Gibi **kenar Sorusu",
+            "geoquestion_code":[
+                "line -> name:d1",
+                "line -> name:d2",
+                "line -> name:d3, parallel:d1",
+                "line -> name:d4, parallel:d2",
+                "dot -> name:A, cut:d1;d2",
+                "dot -> name:B, cut:d2;d3",
+                "dot -> name:C, cut:d1;d4",
+                "dot -> name:D, cut:d3;d4",
+                "polygon -> name:p1, dots:A;B;C;D",
+                "variable -> name:ABLENGTH,visible:yes -> lengthof A B",
+                "variable -> name:ACLENGTH,visible:yes -> lengthof A C",
+                "variable -> name:ANGLEA,visible:yes -> p1's angle A",
+                "variable -> name:ANGLEB,visible:yes -> p1's angle B",
+                "variable -> name:ANGLEC,visible:yes -> p1's angle C",
+                "variable -> name:ANGLED,visible:yes -> p1's angle D",
+                "variable -> name:answer,visible:no -> lengthof B D"
+            ],
+            "question":"|BD| uzunluğu kaçtır?",
+            "answer":{"val":"answer","type":"integer"}
+        },
+        {
+            "point":3,
+            "type":"geometric",
+            "head":"Kosinüs Teoremi?",
+            "geoquestion_code":[
+                "line -> name:d1",
+                "line -> name:d2",
+                "line -> name:d3",
+                "dot -> name:A, cut:d1;d2",
+                "dot -> name:B, cut:d2;d3",
+                "dot -> name:C, cut:d1;d3",
+                "triangle -> name:t1, dots:A;B;C",
+                "variable -> name:ABLENGTH,visible:yes -> lengthof A B",
+                "variable -> name:ACLENGTH,visible:yes -> lengthof A C",
+                "variable -> name:ANGLEA,visible:yes -> t1's angle A",
+                "variable -> name:answer,visible:no -> lengthof B C"
+            ],
+            "question":"|BC| uzunluğu kaçtır?",
+            "answer":{"val":"answer","type":"integer"}
+        },
+        {
+            "point":3,
+            "type":"geometric",
+            "head":"Alan Dağıtma Sorusu. On Numara...",
+            "geoquestion_code":[
+                "line -> name:d1",
+                "line -> name:d2",
+                "line -> name:d3",
+                "dot -> name:A, cut:d1;d2",
+                "dot -> name:B, cut:d2;d3",
+                "dot -> name:C, cut:d1;d3",
+                "triangle -> name:t1, dots:A;B;C",
+                "line -> name:f1 -> t1's bisector A",
+                "dot -> name:D, cut:f1;d3",
+                "freetriangle -> name:ft1, dots:A;C;D",
+                "freetriangle -> name:ft2, dots:B;D;A",
+                "variable -> name:ABLENGTH,visible:yes -> lengthof B D",
+                "variable -> name:areaoft1,visible:yes -> ft1's area",
+                "variable -> name:AREABDA,visible:yes -> ft2's area",
+                "variable -> name:answer,visible:no -> lengthof D C"
+            ],
+            "question":"|DC| uzunluğu kaçtır?",
+            "answer":{"val":"answer","type":"integer"}
+        },
+        {
+            "point":1,
+            "type":"wwtbam",
+            "head":"Aşırı Genel Minnacık Kültür",
+            "questions":[["Türkiye'nin başkenti neresidir?","Ankara"],
+                ["127.0.0.1 adresi neyi gösterir?","Localhost"],
+                ["Google'da genelde 'Menderes' yazınca çıkan şey nedir?","Adnan Menderes"],
+                ["İzmir'in neyi meşhurdur?","Boyoz ve İzmir köfte"],
+                ["Periyodik tabloda 5567 derece sıcaklıkta sıvı kalabilen element nedir?","Rhenium"],
+                ["-273 derece sıcaklıkta sıvı olarak gösterilen ilginç elementin adı nedir?","Helyum"],
+                ["BeCO3 -> BeO + ?","CO2"]
+            ]
+        },
+        {
+            "point":3,
+            "type":"wwtbam",
+            "head":"Kelimeler, Kelimeler! (ve son anlamları)",
+            "genquestionfrom":"tsti/question_folder/TDKquestions.json"
+        },
+        {
+            "point":1,
+            "type":"wwtbam",
+            "head":"Kımya",
+            "questions":[
+                ["F-","Florür"],
+                ["Cl-","Klorür"],
+                ["ClO-","Hipoklorit"],
+                ["ClO2-","Klorit"],
+                ["ClO3-","Klorat"],
+                ["ClO4-","Perklorat"],
+                ["Br-","Bromür"],
+                ["BrO-","Hipobromit"],
+                ["BrO2-","Bromit"],
+                ["BrO3-","Bromat"],
+                ["I-","İyodür"],
+                ["IO-","Hipoiyodit"],
+                ["IO2-","İyodit"],
+                ["IO3-","İyodat"],
+                ["IO4-","Periyodat"],
+                ["N-3","Nitrür"],
+                ["NO2-","Nitrit"],
+                ["NO3-","Nitrat"],
+                ["AsO3-3","Arsenit"],
+                ["AsO4-3","Arsenat"],
+                ["CN-","Siyanür"],
+                ["CNO-","Siyanat"],
+                ["SCN-","Rodanür"],
+                ["CO3-2","Karbonat"],
+                ["HCO3-","Bikarbonat"],
+                ["S-2","Sülfür"],
+                ["HS-","Bisülfür"],
+                ["SO3-2","Sülfit"],
+                ["HSO3-1","Bisülfit"],
+                ["SO4-2","Sülfat"]
+            ]
+        }
+    ]
+}

@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block header %}
+    <h1>{% block title %}Kraliyetler{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+    {% if user_requests|length != 0 %}
+        <h2 style="text-align:center">Kraliyetlere Bulunduğun İstekler</h2>
+        <table class="kingdomusers">
+            <tr>
+                <th>Kraliyet</th>
+                <th>Açıklama</th>
+                <th>Eylem</th>
+            </tr>
+            {% for user_request in user_requests %}
+            <tr>
+                <td>{{user_request["kingdomname"]}}</td>
+                <td>{{user_request["join_desc"]}}</td>
+                <td>
+                    <form action="{{url_for('kingdom.cancel_request_kingdom',requestId = user_request['id'])}}" method="post">
+                        <input type="submit" value="İptal">
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        <br>
+        <br>
+        <hr>
+    {% endif %}
+    {% for kingdom in kingdoms %}
+        <div>
+            <h1 style="color:{{kingdom['color_hex']}};text-align:center">
+                {% if kingdom['pp_file_name'] != none and kingdom['pp_file_name'] != '' %}
+                    <img style="height:5%;width:5%" src="{{url_for('static',filename=kingdom['pp_file_name'])}}" alt="Logo">
+                {% endif %}
+                {{kingdom["kingdomname"]}}
+                [{{kingdom["kingdom_level"]}}]
+            </h1>
+            <p style="text-align:center">{{kingdom["kingdom_exp"]}}</p>
+            {% if users[kingdom["id"]]|length != 0 %}
+                <table class="kingdomusers">
+                    <tr>
+                        <th>Seviye</th>
+                        <th>Kullanıcı</th>
+                        <th>Rütbe</th>
+                        <th>Puan</th>
+                    </tr>
+                    {% for user in users[kingdom["id"]] %}
+                        <tr>
+                            <td>{{ user["level"] }}</td>
+                            <td>{{ user["username"] }}</td>
+                            <td>{{ ranknames[user["kingdom_perm"]] }}</td>
+                            <td>{{ user["point"] }}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            {% else %}
+                <table class="kingdomusers">
+                    <tr>
+                        <th>Bu Kraliyetin Hiç Üyesi Yok</th>
+                    </tr>
+                </table>
+            {% endif %}
+            <div style="text-align:center;margin:25px">
+                {% if g.user["kingdom_id"] == kingdom["id"] %}<a class="kingdom_exit" href="{{ url_for('kingdom.exit_kingdom') }}">Ayrıl</a>
+                {% elif {'kingdom_id':kingdom["id"]} in req_sended_kingdoms %} <a class="kingdom_exit">İstek Yollandı</a>
+                {% else %}<a class="kingdom_request" href="{{url_for('kingdom.join_kingdom',kingdom_id=kingdom['id'])}}">Katılma İsteği Yolla</a>
+                {% endif %}
+            </div>
+            <a href="{{url_for('RDH.report',repType='kingdom',id=kingdom['id'])}}">Kraliyeti Raporla</a>
+        </div>
+        {% if not loop.last %}
+                <hr>
+        {% endif %}
+
+    {% endfor %}
+{% endblock %}

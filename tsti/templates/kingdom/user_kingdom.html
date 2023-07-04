@@ -1,0 +1,130 @@
+{% extends 'base.html' %}
+
+{% block header %}
+    <h1>{% block title %}Kraliyetin!{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+    {% if g.user["kingdom_perm"] > 0 %}
+        {% if unseen_warnings|length > 0  %}
+            <h1 style="text-align:center">Yöneticilerden Uyarı!</h1>
+            <table class="warnings">
+                <tr>
+                    <th>Zaman</th>
+                    <th>Uyarı</th>
+                </tr>
+                {% for an_warn in unseen_warnings %}
+                    <tr>
+                        <td>{{ an_warn['created'].strftime('%Y-%m-%d') }}</td>
+                        <td>{{ an_warn['warning'] }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+            <hr>
+        {% endif %}
+        {% if kingdom_requests|length > 0 %}
+            <table class="kingdomusers">
+                <tr>
+                    <th>Kullanıcı</th>
+                    <th>Açıklama</th>
+                    <th>Eylem</th>
+                </tr>
+                {% for an_request in kingdom_requests %}
+                    <tr>
+                        <td><a href="{{url_for('user.userInfo',id=an_request['user_id'])}}">{{an_request["username"]}}[{{an_request["point"]}}]</a></td>
+                        <td>{{an_request["join_desc"]}}</td>
+                        <td><form method="post" action="{{url_for('kingdom.apply_kingdom',request_id=an_request['id'])}}"><input type="submit" value="Onayla!"></form></td>
+                    </tr>
+                {% endfor %}
+            </table>
+        {% else %}
+            <table class="kingdomusers">
+                <tr>
+                    <th>Kraliyete ulaşan bir katılma isteği yok.</th>
+                </tr>
+            </table>
+        {% endif %}
+    {% endif %}
+
+    <div>
+        <h1 style="color:{{kingdom['color_hex']}};text-align:center">
+            {% if kingdom['pp_file_name'] != none and kingdom['pp_file_name'] != '' %}
+                <img style="height:5%;width:5%" src="{{url_for('static',filename=kingdom['pp_file_name'])}}" alt="Logo">
+            {% endif %}
+            {{kingdom["kingdomname"]}}
+            [{{kingdom["kingdom_level"]}}]
+        </h1>
+        <p style="text-align:center">{{kingdom["kingdom_exp"]}}</p>
+        {% if g.user["kingdom_perm"] == 4 %}<div style="text-align:center; padding-bottom:1rem"><a href="{{url_for('kingdom.edit_kingdom')}}">Kraliyetini Düzenle</a></div>{% endif %}
+        <table class="kingdomusers">
+            <tr>
+                <th>Seviye</th>
+                <th>Kullanıcı</th>
+                <th></th>
+                <th>Puan</th>
+                {% if g.user["kingdom_perm"] > 0 %}
+                    <th>+</th>
+                    <th>BAN</th>
+                    <th>UYARI</th>
+                {% endif %}
+            </tr>
+            {% for user in users_inkingdom %}
+                <tr>
+                    <td>{{ user["level"] }}</td>
+                    <td>{{ user["username"] }}</td>
+                    <td>{{ ranknames[user["kingdom_perm"]] }}</td>
+                    <td>{{ user["point"] }}</td>
+                    {% if g.user["kingdom_perm"] > 0 %}
+                        <td>
+                            <form method="post" action="{{url_for('kingdom.rank_up_kingdom',user_id=user['id'])}}">
+                                <input type="submit" value="+">
+                            </form>
+                        </td>
+                        <td>
+                            <form method="post" action="{{url_for('kingdom.ban_user_kingdom',user_id=user['id'])}}">
+                                <input type="submit" value="Ban">
+                            </form>
+                        </td>
+                        <td>
+                            <form method="get" action="{{url_for('kingdom.warning_kingdom',user_id=user['id'])}}">
+                                <input type="submit" value="Uyarı Ver">
+                            </form>
+                        </td>
+                    {% endif %}
+                </tr>
+            {% endfor %}
+        </table>
+        <div style="text-align:center;margin:25px">
+            {% if g.user["kingdom_id"] != kingdom["id"] %}<a class="kingdom_request" href="{{url_for('kingdom.join_kingdom',kingdom_id=kingdom['id'])}}">Katılma İsteği Yolla</a>
+            {% else %}<a class="kingdom_exit" href="{{ url_for('kingdom.exit_kingdom') }}">Ayrıl</a>
+            {% endif %}
+        </div>
+    </div>
+
+    {% if seen_warnings|length > 0 and g.user["kingdom_perm"] > 0 %}
+        <h1 style="text-align:center">Yöneticilerden Eski Uyarılar</h1>
+        <table class="kingdomusers">
+            <tr>
+                <th>Zaman</th>
+                <th>Uyarı</th>
+            </tr>
+            {% for an_warn in seen_warnings %}
+                <tr>
+                    <td>{{ an_warn['created'].strftime('%Y-%m-%d') }}</td>
+                    <td>{{ an_warn['warning'] }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+
+    <br><hr><br>
+    {% if not do_not_show_send_messages %}
+    <form method="post" action="{{url_for('messages.send_message',channel=g.user['kingdom_id'])}}">
+        <nav class="message">
+            <input type="textarea" id="body" name="body">
+            <input type="submit" value="Yapıştır!">
+        </nav>
+    </form>
+    {% endif %}
+    {{kingdom_messages_html|safe}}
+{% endblock %}

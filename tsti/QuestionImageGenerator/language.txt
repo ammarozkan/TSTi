@@ -1,0 +1,19 @@
+r : random
+[Type]r[Count]
+a : set array
+[Type]a[Index],[Count]
+
+1a1,2 : set 2 piece of 1 to index 1
+0r5 : 5 piece of 0 randomized
+
+--examples
+'12 5 0r5 1r3' : 12x5 element should be ready for; 
+                        5 piece of 0 randomized,
+                        3 piece of 3 randomized,
+
+
+--elements
+0 : sphere
+1 : cube
+2 : triangle
+3 : man1

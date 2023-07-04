@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block header %}
+    <h1>{% block title %}İstek Yolla{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+    <form method="post">
+        <label for="join_desc">Gerçekten kraliyetten ayrılmak istiyor musun?</label>
+        <input type="submit" value="EVET DOSTUM, ÇIKAR BENİ BU LANET KRALİYETTEN!!">
+    </form>
+    <a href="{{url_for('index')}}">Yok hacı.</a>
+{% endblock %}
